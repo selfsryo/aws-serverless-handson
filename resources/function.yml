@@ -1,0 +1,10 @@
+translate:
+  handler: translate.lambda_handler
+  events:
+    - http:
+        path: /translate
+        method: get
+        request:
+          parameters:
+            querystrings:
+              input_text: true

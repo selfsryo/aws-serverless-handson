@@ -1,0 +1,38 @@
+service: aws-serverless-handson
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  region: ap-northeast-1
+  stage: dev
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - translate:*
+          Resource:
+            - '*'
+            - Fn::Join:
+                - ':'
+                - - 'arn:aws:dynamodb'
+                  - Ref: AWS::Region
+                  - Ref: AWS::AccountId
+                  - 'table/translate-history'
+  package:
+    exclude:
+      - .git/**
+      - .gitignore
+      - .npmignore
+      - README.md
+      - Pipfile*
+      - serverless.yml
+
+functions:
+  - ${file(./resources/function.yml)}
+
+resources:
+  - ${file(./resources/dynamodb.yml)}

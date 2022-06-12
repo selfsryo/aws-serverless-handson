@@ -1,0 +1,14 @@
+Resources:
+  translateHistory:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: translate-history
+      AttributeDefinitions:
+        - AttributeName: timestamp
+          AttributeType: S
+      KeySchema:
+        - AttributeName: timestamp
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
