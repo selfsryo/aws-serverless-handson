@@ -9,3 +9,14 @@
 
 ## エンドポイント
 `/translate?input_text={}`
+
+## 実行方法
+- AWS CLIを設定
+- 以下でデプロイ
+```shell
+sls deploy --aws-profile 任意のプロファイル名
+```
+- 以下で削除
+```shell
+sls remove --aws-profile 任意のプロファイル名
+```
